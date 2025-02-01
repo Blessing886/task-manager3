@@ -11,7 +11,7 @@ class User(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
     email = db.Column(db.String, unique=True, nullable=False)
-    role = db.Column(db.Enum('Manager', 'Employee', name='user_role'), nullable=False)
+    role = db.Column(db.Enum('Manager', 'Employee', name='user_role'), nullable=True)
     department_id = db.Column(db.Integer, db.ForeignKey('departments.id'))
 
     # Relationships
@@ -27,7 +27,7 @@ class Department(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
     description = db.Column(db.Text)
-    manager_id = db.Column(db.Integer, db.ForeignKey('users.id'), unique=True, nullable=False)
+    manager_id = db.Column(db.Integer, db.ForeignKey('users.id'), unique=True, nullable=True)
 
     # relationships
     manager = db.relationship('User', back_populates='managed_department', foreign_keys=[manager_id])
