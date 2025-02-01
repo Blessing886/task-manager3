@@ -95,4 +95,4 @@ with app.app_context():
     db.session.add_all(comments)
     db.session.commit()
 
-    print("Database seeded successfully!") 
+    print("Database seeded successfully!")
